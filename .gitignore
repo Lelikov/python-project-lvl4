@@ -10,3 +10,4 @@ coverage.xml
 *.log
 /.envrc
 /db.sqlite3
+/.env
