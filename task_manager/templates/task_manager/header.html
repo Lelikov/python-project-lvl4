@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <title>Task manager</title>
+</head>
+<body class="bg-dark h-100">
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="/" class="navbar-brand">Task manager</a>
+    <ul class="navbar-nav mr-auto"></ul>
+        {% if form.errors %}
+            <p class="navbar-brand">Invalid</p>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <p>Hello, <a href="/users/logout/">{{ user.username }}</a></p>
+        {% else %}
+        <form class="form-inline" method="post" action="/users/login/">
+            {% csrf_token %}
+            <div class="form-group pr-3">
+                <input type="text" placeholder="Username" class="form-control" name="username">
+            </div>
+            <div class="form-group pr-3">
+                <input type="password" placeholder="Password" class="form-control" name="password">
+            </div>
+                {% buttons %}
+            <button class="btn btn-success pr-3" type="submit">Send</button>
+              {% endbuttons %}
+            <a href="/users" class="btn btn-info pl-3">Sign up</a>
+        </form>
+        {% endif %}
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>

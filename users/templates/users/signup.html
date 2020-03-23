@@ -1,0 +1,23 @@
+{% extends 'task_manager/header.html' %}
+{% block content %}
+<main class="container d-flex justify-content-center align-items-center h-100">
+    <div class="card col-lg-6 col-md-8 col-sm-12 col-xs-12 bg-light">
+            <h1 class="card-title">Please sign up</h1>
+            <form action="/users/signup/" method="post">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                </div>
+                <div class="mb-2">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="mb-2">
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="mb-2">
+                    <button class="btn btn-success btn-block" type="submit">Sign up</button>
+                </div>
+            </form>
+    </div>
+</main>
+{% endblock %}
