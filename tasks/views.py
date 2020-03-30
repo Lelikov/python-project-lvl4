@@ -27,8 +27,8 @@ class TasksViews(LoginRequiredMixin, ListView):
                 if value and (key.split('__')[0] in all_fields):
                     filters.update({key: value})
             queryset = super().get_queryset().filter(**filters)
-        else:
-            queryset = super().get_queryset()
+            return queryset
+        queryset = super().get_queryset()
         return queryset
 
 

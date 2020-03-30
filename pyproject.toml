@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lelikov-task_manager"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Alexandr Lelikov <lelikovas@gmail.com>"]
 packages = [{ include = "task_manager" }]
@@ -15,6 +15,8 @@ python-dotenv = "^0.12.0"
 
 [tool.poetry.dev-dependencies]
 gunicorn = "^20.0.4"
+flake8 = "^3.7.9"
+pytest-cov = "^2.8.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
