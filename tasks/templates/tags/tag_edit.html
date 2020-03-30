@@ -1,0 +1,14 @@
+{% extends 'task_manager/main.html' %}
+{% block content %}
+<div class="card col-lg-4 mt-1">
+    <form method="post" id="edit">
+        {% csrf_token %}
+        <input name="name" class="form-control mb-1" value="{{ form.name.value}}">
+    </form>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success" form="edit">Edit</button>
+        <a href="{%url 'TagViews' %}" class="btn btn-danger">Cancel</a>
+    </div>
+
+</div>
+{% endblock %}

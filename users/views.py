@@ -1,32 +1,49 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from django.views.generic import FormView, RedirectView
+from django.urls import reverse_lazy
+from users.forms import LoginForm, SignUpForm
+from django.views.generic.edit import CreateView
+from django.contrib.auth import authenticate
+from django.http import HttpResponseRedirect
 
 
-def index(request):
-    return render(request, 'users/signup.html')
+class SignupUser(CreateView):
+    model = User
+    form_class = SignUpForm
+    template_name = 'users/signup.html'
+    success_url = reverse_lazy('TaskViews')
+
+    def form_valid(self, form):
+        form.save()
+        username = self.request.POST.get('username')
+        password = self.request.POST.get('password1')
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+        return HttpResponseRedirect(reverse_lazy('TaskViews'))
+
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse_lazy('TaskViews'))
+        return super().dispatch(*args, **kwargs)
 
 
-def login_user(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+class LoginUser(FormView):
+    form_class = LoginForm
+    success_url = reverse_lazy('TaskViews')
+    template_name = 'task_manager/main.html'
+
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return super(LoginUser, self).form_valid(form)
 
 
-def logout_user(request):
-    logout(request)
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+class LogoutUser(RedirectView):
+    """
+    Provides users the ability to logout
+    """
+    url = reverse_lazy('Main')
 
-
-def signup(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        User.objects.create_user(username, email, password)
-    return HttpResponseRedirect('/')
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return super(LogoutUser, self).get(request, *args, **kwargs)

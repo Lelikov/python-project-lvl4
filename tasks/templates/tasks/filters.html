@@ -1,0 +1,48 @@
+{% block content %}
+<div class="card col-8 p-1">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <form method="GET" action="">
+                <input type="hidden" name="creator__username" value={{ user.username }}>
+                <button type="submit" class="btn btn-danger mr-1">From me</button>
+            </form>
+        </div>
+        <div>
+            <form method="GET" action="">
+                <input type="hidden" name="assigned_to__username" value={{ user.username }}>
+                <button type="submit" class="btn btn-danger">To me</button>
+            </form>
+        </div>
+        <form class="d-flex flex-grow-1 justify-content-around" method="GET" action="." id="filter">
+            <div class="d-flex flex-column align-items-center col-4">
+                <label for="status__name">Status</label>
+                <select class="form-control" name="status__name" id="status__name">
+                    <option></option>
+                    {% for status in TaskStatuses%}
+                    <option>{{ status }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-flex flex-column align-items-center col-4">
+                <label for="creator__username">Creator</label>
+                <select class="form-control" name="creator__username" id="creator__username">
+                    <option></option>
+                    {% for user in Users%}
+                    <option>{{ user }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-flex flex-column align-items-center col-4">
+                <label for="assigned_to__username">Assigned</label>
+                <select class="form-control" name="assigned_to__username" id="assigned_to__username">
+                    <option></option>
+                    {% for user in Users%}
+                    <option>{{ user }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+        <div><button type="submit" class="btn btn-danger" form="filter">Filter</button></div>
+    </div>
+</div>
+{% endblock %}

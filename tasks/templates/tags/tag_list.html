@@ -1,0 +1,23 @@
+{% extends 'task_manager/main.html' %}
+{% block content %}
+
+<div class="card d-flex flex-column col-4 mt-1">
+{% for tag in tag_list%}
+    <form method="POST" action="{% url 'TagDelete' pk=tag.id %}" id="delete_tag">
+        {% csrf_token %}
+    <div class="d-flex flex-row justify-content-between mb-1">
+            <div>{{ tag }}</div>
+            <div>
+            <a href="{% url 'TagEdit' pk=tag.id %}" class="btn btn-success btn-sm">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+            <button type="button" class="btn btn-sm btn-danger" onClick="deleteFunction(this.form)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+            </div>
+    </div>
+    </form>
+{% endfor %}
+    <a href="{% url 'TaskViews'%}" class="btn btn-danger">Back</a>
+</div>
+{% endblock %}

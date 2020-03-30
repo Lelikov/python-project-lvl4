@@ -3,3 +3,4 @@ gunicorn
 python-dotenv
 rollbar
 django-bootstrap4
+django-fa

@@ -1,0 +1,54 @@
+{% extends 'task_manager/main.html' %}
+{% block content %}
+<div class="d-flex col-8 p-1">
+    {% include 'tasks/task_create.html' with form=TaskCreate %}
+    <div class="d-flex col-4 p-0">
+        <div class="d-flex flex-column col-12 p-0 ml-1">
+            {% include 'status/task_status_create.html' with StatusCreateForm=StatusCreateForm %}
+            {% include 'tags/tag_create.html' with TagCreateForm=TagCreateForm %}
+        </div>
+    </div>
+</div>
+{% include 'tasks/filters.html' %}
+    {% for task in task_list %}
+        <div class="d-flex flex-column card col-6 bg-light mt-2 p-1">
+            <div class="d-flex justify-content-between">
+                <span>From {{ task.creator }} to {{ task.assigned_to }}</span>
+                <span>{{ task.status }}</span>
+            </div>
+            <div class="border-top"></div>
+            <div>
+                <span>Name:</span><span class="font-weight-bolder"> {{ task.name }}</span>
+            </div>
+            <div>
+                {% if task.description %}
+                <span>Description: {{ task.description }}</span>
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                {% for tag in task.tags.all %}
+                    <span><a class="badge badge-secondary" href="{% url 'TaskViews' %}?tags__name={{tag}}">{{tag}}</a></span>
+                {%endfor%}
+                </div>
+                <div class="d-flex flex-row">
+                    {% if user == task.creator%}
+                    <form action="{% url 'TaskEdit' pk=task.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                    <form method="POST" action="{% url 'TaskDelete' task.pk %}">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-danger btn-sm ml-1" onClick="deleteFunction(this.form)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

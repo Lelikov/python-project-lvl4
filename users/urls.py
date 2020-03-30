@@ -1,9 +1,8 @@
-from django.urls import path, include
+from django.conf.urls import url
 from users import views
 
 urlpatterns = [
-    path('', views.index),
-    path('login/', views.login_user),
-    path('logout/', views.logout_user),
-    path('signup/', views.signup),
+    url(r'^login/$', views.LoginUser.as_view(), name='SignIn'),
+    url(r'^logout/$', views.LogoutUser.as_view(), name='LogOut'),
+    url(r'^signup/$', views.SignupUser.as_view(), name='SignUp'),
 ]

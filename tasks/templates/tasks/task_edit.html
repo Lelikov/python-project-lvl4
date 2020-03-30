@@ -1,0 +1,13 @@
+{% extends 'task_manager/main.html' %}
+{% block content %}
+<div class="card col-lg-6 mb-1 mt-1">
+    <form method="post" id="task_edit">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success" form="task_edit">Edit</button>
+        <a href="{%url 'TaskViews' %}" class="btn btn-danger">Cancel</a>
+    </div>
+</div>
+{% endblock %}

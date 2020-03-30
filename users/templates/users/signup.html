@@ -1,23 +1,27 @@
-{% extends 'task_manager/header.html' %}
+{% extends 'task_manager/main.html' %}
 {% block content %}
-<main class="container d-flex justify-content-center align-items-center h-100">
-    <div class="card col-lg-6 col-md-8 col-sm-12 col-xs-12 bg-light">
-            <h1 class="card-title">Please sign up</h1>
-            <form action="/users/signup/" method="post">
-                {% csrf_token %}
-                <div class="mb-2">
-                    <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                </div>
-                <div class="mb-2">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="mb-2">
-                    <input type="email" name="email" class="form-control" placeholder="Email">
-                </div>
-                <div class="mb-2">
-                    <button class="btn btn-success btn-block" type="submit">Sign up</button>
-                </div>
-            </form>
+<div class="row min-vh-100 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div class="card align-self-center col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-light">
+        <h1 class="card-title">Please sign up</h1>
+        <form action="/users/signup/" method="post">
+            {% csrf_token %}
+            {% for error in form.errors.values %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+            {{ form.username}}
+            <small class="form-text text-muted mb-2">Maximum 150 characters. Letters, digits and . @ + - only</small>
+            {{ form.password1 }}
+            <dl>
+                <dd><small class="form-text text-muted mb-1">Your password can’t be too similar to your other personal information</small></dd>
+                <dd><small class="form-text text-muted mb-1">Your password must contain at least 8 characters</small></dd>
+                <dd><small class="form-text text-muted mb-1">Your password can’t be a commonly used password</small></dd>
+                <dd><small class="form-text text-muted mb-1">Your password can’t be entirely numeric</small></dd>
+            </dl>
+            {{ form.password2 }}
+            {{ form.email }}
+            <button class="btn btn-success btn-block mb-1" type="submit">Sign up</button>
+        </form>
     </div>
-</main>
+</div>
+
 {% endblock %}
