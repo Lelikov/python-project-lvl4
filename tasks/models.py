@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
 from django.db.models.functions import Upper
 
 
@@ -29,8 +28,10 @@ class Task(models.Model):
     description = models.TextField(blank=True, null=True)
     status = models.ForeignKey(TaskStatus, default=1, on_delete=models.CASCADE,
                                related_name='status')
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='creator')
-    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_to')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE,
+                                related_name='creator')
+    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE,
+                                    related_name='assigned_to')
     tags = models.ManyToManyField(Tag, related_name='tags', blank=True)
 
     def __str__(self):

@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from tasks.forms import TaskForm, StatusCreateForm, TagCreateForm
 from tasks.models import Tag, Task, TaskStatus, User

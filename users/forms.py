@@ -10,10 +10,12 @@ class SignUpForm(UserCreationForm):
                                 widget=forms.TextInput(
                                     attrs={'class': 'form-control mb-1',
                                            'placeholder': 'Username',
-                                           'maxlength': '150', 'required': True,
+                                           'maxlength': '150',
+                                           'required': True,
                                            'autofocus': True
                                            }),
-                                error_messages={'invalid': 'Enter a valid name'})
+                                error_messages={
+                                    'invalid': 'Enter a valid name'})
     email = forms.CharField(widget=forms.EmailInput(
         attrs={'class': 'form-control mb-2',
                'placeholder': 'Email',
