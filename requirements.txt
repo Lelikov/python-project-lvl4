@@ -4,6 +4,4 @@ python-dotenv
 rollbar
 django-bootstrap4
 django-fa
-dj-database-url
-whitenoise
-psycopg2
+django-heroku
