@@ -5,3 +5,4 @@ rollbar
 django-bootstrap4
 django-fa
 dj-database-url
+whitenoise

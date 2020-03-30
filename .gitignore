@@ -9,5 +9,5 @@ coverage.xml
 .idea/
 *.log
 /.envrc
-/db.sqlite3
 /.env
+db.sqlite3
