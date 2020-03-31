@@ -15,6 +15,10 @@ runserver:
 runshell:
 	poetry run python3 manage.py shell
 
+migrate:
+	poetry run python3 manage.py makemigrations
+	poetry run python3 manage.py migrate
+
 build:
 	poetry build
 
