@@ -6,7 +6,7 @@
 This app is simple task manager.
 
 You can watch it at work here:
-https://task-manager-hexlet-lvl4.herokuapp.com/
+https://task-manager-lelikov-lvl4.herokuapp.com/
 
 For use localy:
 ``` 
