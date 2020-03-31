@@ -5,7 +5,7 @@ lint:
 	poetry run flake8
 
 test:
-	coverage run manage.py test
+	coverage run --source='.' manage.py test
 	coverage report
 	coverage xml
 
