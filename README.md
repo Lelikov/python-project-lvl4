@@ -12,7 +12,7 @@ For use localy:
 ``` 
 https://github.com/Lelikov/python-project-lvl4.git
 ```
-Use should rename file .env.example to .env and added value of variable environments
+You should rename file .env.example to .env and added value of variable environments
 ```
 DATABASE_URL = !Path to your database!
 DEBUG = !'True' if you want to use debug mode!
