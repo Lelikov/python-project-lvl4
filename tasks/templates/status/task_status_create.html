@@ -3,7 +3,7 @@
     <form method="post" action="{% url 'StatusCreate' %}">
         {% csrf_token %}
         <div class="d-flex">
-            <input type="text" name="name" id="CreateNewStatusName" placeholder="New status" class="form-control" required>
+            <input type="text" name="name" id="CreateNewStatusName" placeholder="New status" class="form-control" maxlength="20" required>
             <button class="btn btn-success ml-1" type="button" onclick="checkStatus(this.form, 'CreateNewStatusName', 'ArrayOfTaskStatus', 'TaskStatusError')">
                 Create
             </button>

@@ -5,7 +5,9 @@ lint:
 	poetry run flake8
 
 test:
-	poetry run pytest --cov=page_loader tests/ --cov-report xml
+	coverage run manage.py test -v 2
+	coverage report
+	coverage xml
 
 runserver:
 	poetry run python3 manage.py runserver

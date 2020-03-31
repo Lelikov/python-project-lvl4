@@ -7,7 +7,8 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ('name', 'description', 'status', 'assigned_to', 'tags')
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(
+                attrs={'class': 'form-control', 'maxlength': 50}),
             'description': forms.Textarea(
                 attrs={'class': 'form-control', 'rows': 3}),
             'status': forms.Select(

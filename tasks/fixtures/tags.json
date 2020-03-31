@@ -1,0 +1,7 @@
+[
+  {"model": "tasks.tag", "pk": 1, "fields": {"name": "First"}},
+  {"model": "tasks.tag", "pk": 2, "fields": {"name": "Second"}},
+  {"model": "tasks.tag", "pk": 3, "fields": {"name": "Third"}},
+  {"model": "tasks.tag", "pk": 4, "fields": {"name": "Ok"}},
+  {"model": "tasks.tag", "pk": 5, "fields": {"name": "Test"}}
+]
