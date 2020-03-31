@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from dotenv import load_dotenv
-import django_heroku
 
 load_dotenv()
 
@@ -137,6 +136,8 @@ ROLLBAR = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-django_heroku.settings(locals())
-if os.path.isfile(DOTENV_FILE):
-    del DATABASES['default']['OPTIONS']['sslmode']
+STATIC_URL = '/static/'
+
+if '/app' in os.environ['HOME']:
+    import django_heroku
+    django_heroku.settings(locals())
