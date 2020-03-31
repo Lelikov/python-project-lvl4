@@ -6,8 +6,7 @@ lint:
 
 test:
 	coverage run manage.py test -v 2
-	coverage report
-	coverage xml
+
 
 runserver:
 	poetry run python3 manage.py runserver
