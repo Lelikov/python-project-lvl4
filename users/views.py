@@ -1,11 +1,11 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.views.generic import FormView, RedirectView
-from django.urls import reverse_lazy
-from users.forms import LoginForm, SignUpForm
-from django.views.generic.edit import CreateView
-from django.contrib.auth import authenticate
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.views.generic import FormView, RedirectView
+from django.views.generic.edit import CreateView
+
+from users.forms import LoginForm, SignUpForm
 
 
 class SignupUser(CreateView):

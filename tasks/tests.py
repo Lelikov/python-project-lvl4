@@ -1,7 +1,8 @@
-from django.test import Client, RequestFactory, TestCase
-from tasks import views
-from tasks.models import Task, TaskStatus, Tag
 from django.contrib.auth.models import User
+from django.test import Client, RequestFactory, TestCase
+
+from tasks import views
+from tasks.models import Tag, Task, TaskStatus
 
 
 class TaskTest(TestCase):
